@@ -1,13 +1,8 @@
 package com.al7irfa.al7irfa.Repository;
+import com.al7irfa.al7irfa.Entities.Consultation;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-import org.springframework.stereotype.Repository;
-
-
-@Repository("consultationRepository")
-public interface ConsultationRepository {
-
-
-
+public interface ConsultationRepository extends JpaRepository<Consultation,Integer> {
 
 }

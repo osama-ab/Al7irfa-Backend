@@ -1,4 +1,4 @@
-package com.al7irfa.al7irfa.Entity;
+package com.al7irfa.al7irfa.Entities;
 
 import java.util.Date;
 
