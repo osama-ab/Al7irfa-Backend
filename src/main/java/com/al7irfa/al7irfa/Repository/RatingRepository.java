@@ -1,9 +1,12 @@
 package com.al7irfa.al7irfa.Repository;
 
 
-import org.springframework.stereotype.Repository;
+import com.al7irfa.al7irfa.Entities.Rating;
+import com.al7irfa.al7irfa.Entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@Repository("ratingRepository")
 
-public interface RatingRepository {
+
+
+public interface RatingRepository extends JpaRepository<Rating,Integer> {
 }
