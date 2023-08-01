@@ -1,9 +1,4 @@
 package com.al7irfa.al7irfa.Entities;
-
-
-
-
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
