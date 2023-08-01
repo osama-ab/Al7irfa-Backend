@@ -1,97 +1,47 @@
 package com.al7irfa.al7irfa.Entities;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
 import java.util.Date;
 
+
+
+@Entity @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Consultation {
 
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idConsultation;
     private Date consultationDate;
-    private int idClient;
-    private int idWorker;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "id_ouvrier")
+    private Ouvrier ouvrier;
+
+    @OneToOne
+    @JoinColumn(name = "idReview")
+    private Review review;
+
+    @OneToOne(mappedBy = "consultation")
+    private Reclamation reclamation;
+
+
     private Integer note;
-    private int idReview;
-    private int idJob;
-    private Integer idConsultationType;
 
-    public Consultation() {
-    }
 
-    public Consultation(int idConsultation, Date consultationDate, int idClient,
-                        int idWorker, Integer note, int idReview, int idJob,
-                        Integer idConsultationType) {
 
-        this.idConsultation = idConsultation;
-        this.consultationDate = consultationDate;
-        this.idClient = idClient;
-        this.idWorker = idWorker;
-        this.note = note;
-        this.idReview = idReview;
-        this.idJob = idJob;
-        this.idConsultationType = idConsultationType;
-    }
+    @OneToOne
+    @JoinColumn(name = "id_type_cons")
+    private TypeConsultation typecons;
 
-    public int getIdConsultation() {
-        return idConsultation;
-    }
-
-    public void setIdConsultation(int idConsultation) {
-        this.idConsultation = idConsultation;
-    }
-
-    public Date getConsultationDate() {
-        return consultationDate;
-    }
-
-    public void setConsultationDate(Date consultationDate) {
-        this.consultationDate = consultationDate;
-    }
-
-    public int getIdClient() {
-        return idClient;
-    }
-
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
-    }
-
-    public int getIdWorker() {
-        return idWorker;
-    }
-
-    public void setIdWorker(int idWorker) {
-        this.idWorker = idWorker;
-    }
-
-    public Integer getNote() {
-        return note;
-    }
-
-    public void setNote(Integer note) {
-        this.note = note;
-    }
-
-    public int getIdReview() {
-        return idReview;
-    }
-
-    public void setIdReview(int idReview) {
-        this.idReview = idReview;
-    }
-
-    public int getIdJob() {
-        return idJob;
-    }
-
-    public void setIdJob(int idJob) {
-        this.idJob = idJob;
-    }
-
-    public Integer getIdConsultationType() {
-        return idConsultationType;
-    }
-
-    public void setIdConsultationType(Integer idConsultationType) {
-        this.idConsultationType = idConsultationType;
-    }
 }
