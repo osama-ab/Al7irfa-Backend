@@ -17,6 +17,13 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.openengsb.wrapped.csharp/Newtonsoft.Json -->
+        <dependency>
+            <groupId>org.openengsb.wrapped.csharp</groupId>
+            <artifactId>Newtonsoft.Json</artifactId>
+            <version>5.0_2</version>
+            <type>pom</type>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
