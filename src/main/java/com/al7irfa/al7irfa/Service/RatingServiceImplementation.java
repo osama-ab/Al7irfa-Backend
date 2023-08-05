@@ -1,0 +1,42 @@
+package com.al7irfa.al7irfa.Service;
+
+import com.al7irfa.al7irfa.Entities.Client;
+import com.al7irfa.al7irfa.Entities.Rating;
+import com.al7irfa.al7irfa.Repository.ClientRepository;
+import com.al7irfa.al7irfa.Repository.RatingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class RatingServiceImplementation {
+    private RatingRepository ratingRepository;
+
+    @Autowired
+    public RatingServiceImplementation( RatingRepository ratingRepository) {
+        this.ratingRepository = ratingRepository;
+    }
+
+    public Rating findRatingById(Integer id){
+
+        return ratingRepository.findById(id).orElse(null);
+
+    }
+
+    public void save(Rating rating){
+
+        ratingRepository.save(rating);
+
+    }
+
+    public void delete(Rating rating){
+        ratingRepository.delete(rating);
+    }
+
+    public List<Rating> findAll(){
+
+        return ratingRepository.findAll();
+    }
+
+}
