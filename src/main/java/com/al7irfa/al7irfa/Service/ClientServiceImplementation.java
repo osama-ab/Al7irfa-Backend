@@ -27,7 +27,7 @@ public class ClientServiceImplementation {
       public void save(Client client){
 
             clientRepository.save(client);
-            
+
       }
 
       public void delete(Client client){
