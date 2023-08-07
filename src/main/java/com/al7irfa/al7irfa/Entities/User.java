@@ -3,6 +3,7 @@ package com.al7irfa.al7irfa.Entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,22 +14,22 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public class User implements UserDetails {
 
     @Id @GeneratedValue(strategy = GenerationType.TABLE)
     private int id_user;
-    private String nom;
-    private String prenom;
-
+    private String firstName ;
+    private String lastName ;
     private String email ;
-
-    private String password;
-
+    private String password ;
     private String address;
     private String phone ;
+
 
 
 
