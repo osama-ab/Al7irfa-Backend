@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class TypeConsultation {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_type_cons;
-
+    
     @OneToOne(mappedBy = "typecons")
     private Consultation consultation;
 }
