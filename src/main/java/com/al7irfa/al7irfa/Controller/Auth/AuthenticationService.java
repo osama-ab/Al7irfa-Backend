@@ -33,7 +33,6 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request) {
 
-        System.out.println("dsadnaskjdnakjsdnakjsdnasdnaosidnoaindasoidnaod"+request.getPhone());
         var user = User.builder()
                 .address(request.getAddress())
                 .email(request.getEmail())
@@ -43,12 +42,10 @@ public class AuthenticationService {
                 .role(Role.ADMIN)
                 .phone(request.getPhone())
                 .build();
-
-        System.out.println("dsadnaskjdnakjsdnakjsdnasdnaosidnoaindasoidnaod"+user.getPhone());
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
-        saveUserToken(savedUser, jwtToken);
+               saveUserToken(savedUser, jwtToken);
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
@@ -60,6 +57,8 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
                         request.getPassword()
+
+
                 )
         );
         var user = repository.findByEmail(request.getEmail())
@@ -68,9 +67,12 @@ public class AuthenticationService {
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
+        Role role = user.getRole();
+
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .role(role)
                 .build();
     }
 
