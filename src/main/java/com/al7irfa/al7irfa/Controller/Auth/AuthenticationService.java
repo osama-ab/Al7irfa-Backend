@@ -2,7 +2,10 @@ package com.al7irfa.al7irfa.Controller.Auth;
 
 
 import com.al7irfa.al7irfa.Config.JwtService;
+import com.al7irfa.al7irfa.Entities.Client;
+import com.al7irfa.al7irfa.Entities.Ouvrier;
 import com.al7irfa.al7irfa.Entities.Role;
+import com.al7irfa.al7irfa.Repository.ClientRepository;
 import com.al7irfa.al7irfa.Repository.UserRepository;
 import com.al7irfa.al7irfa.Token.Token;
 import com.al7irfa.al7irfa.Token.TokenRepository;
@@ -19,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Base64;
 
 @Service
 @RequiredArgsConstructor
@@ -29,28 +33,84 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
+    private final ClientRepository clientRepository;
 
 
-    public AuthenticationResponse register(RegisterRequest request) {
 
-        var user = User.builder()
-                .address(request.getAddress())
+    public AuthenticationResponse registerClient(RegisterRequest request) {
+
+//        byte[] imageBytes = Base64.getDecoder().decode(request.getImage()); // Decode base64 string to byte array
+
+
+
+        Client client = Client.builder()
+                .id(request.getId())
+                .fn(request.getFirstName())
+                .ln(request.getLastName())
                 .email(request.getEmail())
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role(Role.ADMIN)
+                .addresse(request.getAddress())
                 .phone(request.getPhone())
+                .cin(request.getCin())
+                .pays(request.getPays())
+                .ville(request.getVille())
+                .role(Role.Client)
+//                .image(imageBytes)
                 .build();
-        var savedUser = repository.save(user);
-        var jwtToken = jwtService.generateToken(user);
-        var refreshToken = jwtService.generateRefreshToken(user);
+        var savedUser = repository.save(client);
+        var jwtToken = jwtService.generateToken(client);
+        var refreshToken = jwtService.generateRefreshToken(client);
                saveUserToken(savedUser, jwtToken);
+
+
+
+
+
+
+
+
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .role(Role.Client)
                 .build();
     }
+
+
+
+    public AuthenticationResponse registerOuvrier(RegisterRequest request) {
+
+//        byte[] imageBytes = Base64.getDecoder().decode(request.getImage()); // Decode base64 string to byte array
+
+
+        Ouvrier ouvrier = Ouvrier.builder()
+                .id(request.getId())
+                .fn(request.getFirstName())
+                .ln(request.getLastName())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .addresse(request.getAddress())
+                .phone(request.getPhone())
+                .cin(request.getCin())
+                .pays(request.getPays())
+                .ville(request.getVille())
+                .role(Role.Ouvrier)
+//                .image(imageBytes)
+                .build();
+        var savedUser = repository.save(ouvrier);
+        var jwtToken = jwtService.generateToken(ouvrier);
+        var refreshToken = jwtService.generateRefreshToken(ouvrier);
+        saveUserToken(savedUser, jwtToken);
+
+
+        return AuthenticationResponse.builder()
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
+                .role(request.getRole())
+                .build();
+    }
+
+
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
@@ -67,12 +127,12 @@ public class AuthenticationService {
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
-        Role role = user.getRole();
+
 
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
-                .role(role)
+                .role(user.getRole())
                 .build();
     }
 
@@ -88,7 +148,7 @@ public class AuthenticationService {
     }
 
     private void revokeAllUserTokens(User user) {
-        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId_user());
+        var validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {
@@ -125,4 +185,6 @@ public class AuthenticationService {
             }
         }
     }
+
+
 }

@@ -17,11 +17,19 @@ public class AuthenticationController {
 
 
     private final AuthenticationService service ;
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody
+    @PostMapping("/register/client")
+    public ResponseEntity<AuthenticationResponse> registerClient(@RequestBody
                                                                RegisterRequest request ){
 
-            return ResponseEntity.ok(service.register(request));
+            return ResponseEntity.ok(service.registerClient(request));
+    }
+
+
+    @PostMapping("/register/ouvrier")
+    public ResponseEntity<AuthenticationResponse> registerOuvrier(@RequestBody
+                                                           RegisterRequest request ){
+
+        return ResponseEntity.ok(service.registerOuvrier(request));
     }
 
     @PostMapping("/authenticate")
@@ -39,6 +47,8 @@ public class AuthenticationController {
     ) throws IOException {
         service.refreshToken(request, response);
     }
+
+
 
 
 

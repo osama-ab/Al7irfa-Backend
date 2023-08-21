@@ -13,28 +13,37 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity @Data
-@Builder
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 
 public class User implements UserDetails {
 
     @Id @GeneratedValue(strategy = GenerationType.TABLE)
 
-    private int id_user;
+    private int id;
     private String firstName ;
     private String lastName ;
     private String email ;
     private String password ;
     private String address;
     private String phone ;
+    private String cin ;
+    private String pays ;
+
+    private String ville ;
+
+//    @Lob
+//    @Column(name = "image", columnDefinition = "BLOB")
+//    private byte[] image;
 
 
 
 
     @Enumerated(EnumType.STRING)
     private Role role ;
+
 
 
     @Override

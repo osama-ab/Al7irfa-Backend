@@ -4,11 +4,9 @@ import com.al7irfa.al7irfa.Entities.User;
 import com.al7irfa.al7irfa.Repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +14,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin("*")
+
 
 public class UsersController {
-
 
     private final UserRepository userRepository;
 
@@ -37,11 +36,11 @@ public class UsersController {
         return userRepository.findAll();
     }
 
-    @GetMapping ("/getUser")
-    public Optional<User> getUserByEmail(String email ){
-
-      return userRepository.findByEmail(email) ;
-    }
+//    @GetMapping ("/getUser")
+//    public ResponseEntity<> getUserByEmail(String email ){
+//
+//      return userRepository.findByEmail(email) ;
+//    }
 
 
 
