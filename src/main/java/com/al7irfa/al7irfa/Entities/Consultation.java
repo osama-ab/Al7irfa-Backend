@@ -20,12 +20,14 @@ public class Consultation {
     private int idConsultation;
     private Date consultationDate;
 
+    private String Description ;
+
     @ManyToOne
-    @JoinColumn(name = "id_client")
+    @JoinColumn(name = "client_id")
     private Client client;
 
     @ManyToOne
-    @JoinColumn(name = "id_ouvrier")
+    @JoinColumn(name = "ouvrier_id")
     private Ouvrier ouvrier;
 
     @OneToOne

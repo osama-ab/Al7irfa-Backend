@@ -13,14 +13,20 @@ import java.util.Collection;
 
 public class Ouvrier extends User{
 
+    @Enumerated(EnumType.STRING)
+
+    private Categorie categorie  ;
+
+
     @Builder
 
     public Ouvrier(int id , String fn ,String ln ,String email, String password ,
                   String addresse , String phone , String cin
-            , String pays  , String ville ,Role role) {
+            , String pays  , String ville ,Role role ,Categorie categorie) {
         super(  id ,  fn , ln , email,  password ,
                 addresse ,  phone ,  cin
                 ,  pays  ,  ville , role);
+        this.categorie = categorie ;
     }
 
     @OneToOne

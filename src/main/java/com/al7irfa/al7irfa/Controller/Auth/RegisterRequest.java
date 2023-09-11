@@ -1,6 +1,7 @@
 package com.al7irfa.al7irfa.Controller.Auth;
 
 
+import com.al7irfa.al7irfa.Entities.Categorie;
 import com.al7irfa.al7irfa.Entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +26,6 @@ public class RegisterRequest {
     private String pays ;
 //    private byte[] image ;
     private Role role ;
+
+    private Categorie categorie ;
 }

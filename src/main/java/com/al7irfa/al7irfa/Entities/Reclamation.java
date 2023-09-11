@@ -17,6 +17,8 @@ public class Reclamation {
     @JoinColumn(name = "id_client")
     private Client client;
 
+
+
     @OneToOne
     @JoinColumn(name = "id_ouvrier")
     private Ouvrier ouvrier;

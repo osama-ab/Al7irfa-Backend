@@ -22,4 +22,31 @@ public class AuthenticationResponse {
     @JsonProperty("role")
     private Role role ;
 
+    @JsonProperty("firstname")
+    private String firstname ;
+
+    @JsonProperty("lastname")
+    private String lastname ;
+
+    @JsonProperty("email")
+    private String email ;
+
+    @JsonProperty("phone")
+    private String phone ;
+
+    @JsonProperty("pays")
+    private String pays ;
+
+    @JsonProperty("ville")
+    private String ville ;
+
+    @JsonProperty("cin")
+    private String cin ;
+
+    @JsonProperty("addresse")
+    private String addresse ;
+
+
+
+
 }

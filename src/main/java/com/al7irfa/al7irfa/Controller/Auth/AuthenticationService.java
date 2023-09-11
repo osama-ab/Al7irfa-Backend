@@ -96,6 +96,7 @@ public class AuthenticationService {
                 .ville(request.getVille())
                 .role(Role.Ouvrier)
 //                .image(imageBytes)
+                .categorie(request.getCategorie())
                 .build();
         var savedUser = repository.save(ouvrier);
         var jwtToken = jwtService.generateToken(ouvrier);
@@ -133,6 +134,14 @@ public class AuthenticationService {
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
                 .role(user.getRole())
+                .addresse(user.getAddress())
+                .firstname(user.getFirstName())
+                .lastname(user.getLastName())
+                .email(user.getEmail())
+                .cin(user.getCin())
+                .phone(user.getPhone())
+                .ville(user.getVille())
+                .pays(user.getPays())
                 .build();
     }
 
