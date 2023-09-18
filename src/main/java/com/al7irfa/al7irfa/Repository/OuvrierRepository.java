@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OuvrierRepository extends JpaRepository<Ouvrier,Integer> {
 
-    Ouvrier findOuvrierByEmail(String email);
+     Ouvrier findOuvrierByEmail(String email);
+
 }

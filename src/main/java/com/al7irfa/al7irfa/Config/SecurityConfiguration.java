@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                 csrf().
                 disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/auth/**","/users/**","/Consultation/**")
+                .requestMatchers("/api/auth/**","/users/**","/Consultation/**","/ouvrier/**")
                 .permitAll()
                 .requestMatchers(HttpMethod.OPTIONS,"/**")
                 .permitAll()

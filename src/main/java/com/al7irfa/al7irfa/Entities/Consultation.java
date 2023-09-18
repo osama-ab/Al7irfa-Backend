@@ -1,5 +1,6 @@
 package com.al7irfa.al7irfa.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,14 +21,18 @@ public class Consultation {
     private int idConsultation;
     private Date consultationDate;
 
-    private String Description ;
+    private String description ;
+
+    private Boolean isConfirmed ;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonBackReference
     private Client client;
 
     @ManyToOne
     @JoinColumn(name = "ouvrier_id")
+    @JsonBackReference
     private Ouvrier ouvrier;
 
     @OneToOne

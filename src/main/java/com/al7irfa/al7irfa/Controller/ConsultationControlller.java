@@ -6,20 +6,39 @@ import com.al7irfa.al7irfa.Repository.ConsultationRepository;
 import com.al7irfa.al7irfa.Repository.OuvrierRepository;
 import com.al7irfa.al7irfa.Repository.UserRepository;
 import com.al7irfa.al7irfa.Service.ConsultationServiceImplementation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/Consultation")
 @CrossOrigin("*")
+
 public class ConsultationControlller {
 
+
+    private final  ConsultationServiceImplementation consultationServiceImplementation ;
+
     @Autowired
-    private ConsultationServiceImplementation consultationServiceImplementation ;
+    public ConsultationControlller(ConsultationServiceImplementation consultationServiceImplementation) {
+        this.consultationServiceImplementation = consultationServiceImplementation;
+    }
 
+    @GetMapping("/getAll")
+    public List<Consultation> getAllConsultations(){
 
+        return consultationServiceImplementation.findAll();
+    }
 
+    @GetMapping("/ConsultationById")
+
+    public List<Consultation> getConsultationsByOuvrier(@RequestParam("ouvrier5_id") int id){
+
+        return consultationServiceImplementation.getConsultationByIdOuvrier(id);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<String> createConsultation(

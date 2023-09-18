@@ -15,15 +15,24 @@ import java.util.List;
 @Service
 public class ConsultationServiceImplementation {
 
-    @Autowired
-    private ConsultationRepository consultationRepository ;
+
+
+    private final ConsultationRepository consultationRepository ;
+
+    private final  OuvrierRepository ouvrierRepository ;
+
+    private final ClientRepository clientRepository ;
 
     @Autowired
-    private OuvrierRepository ouvrierRepository ;
+    public ConsultationServiceImplementation(ConsultationRepository consultationRepository,
+                                             OuvrierRepository ouvrierRepository,
+                                             ClientRepository clientRepository) {
+        this.consultationRepository = consultationRepository;
+        this.ouvrierRepository = ouvrierRepository;
+        this.clientRepository = clientRepository;
+    }
 
-    @Autowired
-    private ClientRepository clientRepository ;
-//    public ConsultationServiceImplementation(ConsultationRepository consultationRepository,
+    //    public ConsultationServiceImplementation(ConsultationRepository consultationRepository,
 //                                             OuvrierRepository ouvrierRepository ,
 //                                             ClientRepository clientRepository) {
 //        this.consultationRepository = consultationRepository;
@@ -36,6 +45,8 @@ public class ConsultationServiceImplementation {
         return consultationRepository.findById(id).orElse(null);
 
     }
+
+
 
     public void save(Consultation consultation){
 
@@ -52,6 +63,12 @@ public class ConsultationServiceImplementation {
         return consultationRepository.findAll();
     }
 
+    public List<Consultation>getConsultationByIdOuvrier(int id){
+
+        return consultationRepository.findConsultationsByOuvrierId(id);
+    }
+
+
     public void createConsultation(String clientEmail , String ouvrierEmail ) {
 
         Client client = clientRepository.findClientByEmail(clientEmail) ;
@@ -60,12 +77,18 @@ public class ConsultationServiceImplementation {
 
         Consultation consultation = new Consultation();
         consultation.setConsultationDate(new Date());
+        System.out.println(client.getCin());
         consultation.setClient(client);
         consultation.setOuvrier(ouvrier);
+        consultation.setIsConfirmed(false);
         consultationRepository.save(consultation);
 
 
-
-
     }
+
+
+
+
+
+
 }
