@@ -1,5 +1,6 @@
 package com.al7irfa.al7irfa.Controller;
 
+import com.al7irfa.al7irfa.Entities.Categorie;
 import com.al7irfa.al7irfa.Entities.Ouvrier;
 import com.al7irfa.al7irfa.Entities.User;
 import com.al7irfa.al7irfa.Repository.OuvrierRepository;
@@ -40,7 +41,22 @@ public class UsersController {
     }
 
 
-    @GetMapping ("/ListOuvrier")
+    @GetMapping("/ListOuvrierParams")
+    public List<Ouvrier> filterOuvByVilleAndCategorie(@RequestParam(name = "ville", required = false) String ville,
+                                                      @RequestParam(name = "category", required = false) Categorie category) {
+
+
+        if (ville != null && category != null) {
+            return ouvrierRepository.findAllByVilleAndCategorie(ville, category);
+        } else if (ville != null) {
+            return ouvrierRepository.findAllByVille(ville);
+        } else if (category != null) {
+            return ouvrierRepository.findAllByCategorie(category);
+        }
+        return ouvrierRepository.findAll();
+    }
+
+        @GetMapping ("/ListOuvrier")
 
     public List<Ouvrier> getOuvriers() {
 

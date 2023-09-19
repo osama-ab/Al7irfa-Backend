@@ -54,6 +54,11 @@ public class ConsultationServiceImplementation {
 
     }
 
+    public List<Consultation> findConsultationByOuvrierId(int id ){
+
+        return findConsultationByOuvrierId(id);
+    }
+
     public void delete(Consultation consultation){
         consultationRepository.delete(consultation);
     }
@@ -85,6 +90,9 @@ public class ConsultationServiceImplementation {
 
 
     }
+
+
+
 
 
 

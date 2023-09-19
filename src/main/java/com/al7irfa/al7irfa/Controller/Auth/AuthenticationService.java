@@ -133,6 +133,7 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .id(user.getId())
                 .role(user.getRole())
                 .addresse(user.getAddress())
                 .firstname(user.getFirstName())

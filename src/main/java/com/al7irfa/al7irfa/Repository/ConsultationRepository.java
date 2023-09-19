@@ -11,4 +11,6 @@ public interface ConsultationRepository extends JpaRepository<Consultation,Integ
 
     List<Consultation> findAll();
 
+    List<Consultation> findConsultationByOuvrierId(int id);
+
 }
