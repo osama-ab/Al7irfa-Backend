@@ -25,6 +25,8 @@ public class Consultation {
 
     private Boolean isConfirmed ;
 
+    private String ville ;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     @JsonBackReference

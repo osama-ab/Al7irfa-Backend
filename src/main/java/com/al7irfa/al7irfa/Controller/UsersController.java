@@ -1,8 +1,10 @@
 package com.al7irfa.al7irfa.Controller;
 
 import com.al7irfa.al7irfa.Entities.Categorie;
+import com.al7irfa.al7irfa.Entities.Client;
 import com.al7irfa.al7irfa.Entities.Ouvrier;
 import com.al7irfa.al7irfa.Entities.User;
+import com.al7irfa.al7irfa.Repository.ClientRepository;
 import com.al7irfa.al7irfa.Repository.OuvrierRepository;
 import com.al7irfa.al7irfa.Repository.UserRepository;
 
@@ -24,11 +26,15 @@ public class UsersController {
 
     private final OuvrierRepository ouvrierRepository ;
 
+    private final ClientRepository clientRepository ;
+
 
 @Autowired
-    public UsersController(UserRepository userRepository , OuvrierRepository ouvrierRepository) {
+    public UsersController(UserRepository userRepository , OuvrierRepository ouvrierRepository ,
+                           ClientRepository clientRepository) {
         this.userRepository = userRepository;
         this.ouvrierRepository = ouvrierRepository ;
+        this.clientRepository = clientRepository ;
     }
 
 
@@ -62,6 +68,13 @@ public class UsersController {
 
 
         return ouvrierRepository.findAll();
+    }
+
+
+    @GetMapping("/clientConsultation")
+
+    public Client getClientByConsultation(@RequestParam int id ){
+         return clientRepository.findClientById(id);
     }
 
 

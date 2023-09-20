@@ -37,19 +37,36 @@ public class ConsultationControlller {
 
     public List<Consultation> getConsultationsByOuvrier(@RequestParam("ouvrier5_id") int id){
 
-        return consultationServiceImplementation.getConsultationByIdOuvrier(id);
+        return consultationServiceImplementation.findConsultationsByOuvrierIdAndIsConfirmed(id,false);
+    }
+
+
+
+    @GetMapping("/ConsultationByClient")
+
+    public List<Consultation> getConsultationsByClient(@RequestParam int id){
+
+        return consultationServiceImplementation.findConsultationsByClientIdAndIsConfirmed(id,true);
     }
 
     @PostMapping("/create")
     public ResponseEntity<String> createConsultation(
             @RequestParam("client_id") String clientEmail,
-            @RequestParam("ouvrier_id") String ouvrierEmail) {
+            @RequestParam("ouvrier_id") String ouvrierEmail,
+            @RequestParam String description)
+            {
 
-        consultationServiceImplementation.createConsultation(clientEmail, ouvrierEmail);
+        consultationServiceImplementation.createConsultation(clientEmail, ouvrierEmail , description);
         return ResponseEntity.ok("Consultation created successfully.");
     }
 
 
+            @PostMapping("/confirm")
+    public ResponseEntity<String> confirmConsultation(@RequestParam int id ){
+
+                consultationServiceImplementation.setConsultaitonConfirmation(id);
+                return ResponseEntity.ok("CONFIRMED") ;
+            }
 
 
 
