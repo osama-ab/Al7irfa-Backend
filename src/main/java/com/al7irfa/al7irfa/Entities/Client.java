@@ -41,6 +41,9 @@ public Client(int id , String fn ,String ln ,String email, String password ,
     private Paiement paiement;
 
 
+
+
+
     public Client() {
 
     }

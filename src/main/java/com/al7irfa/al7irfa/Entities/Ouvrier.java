@@ -49,6 +49,8 @@ public class Ouvrier extends User{
     @OneToOne(mappedBy = "ouvrier")
     private Paiement paiement;
 
+//    private int classement ;
+
 
     public Ouvrier() {
 

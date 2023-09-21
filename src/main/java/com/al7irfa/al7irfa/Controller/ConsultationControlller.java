@@ -62,7 +62,7 @@ public class ConsultationControlller {
 
 
             @PostMapping("/confirm")
-    public ResponseEntity<String> confirmConsultation(@RequestParam int id ){
+          public ResponseEntity<String> confirmConsultation(@RequestParam int id ){
 
                 consultationServiceImplementation.setConsultaitonConfirmation(id);
                 return ResponseEntity.ok("CONFIRMED") ;

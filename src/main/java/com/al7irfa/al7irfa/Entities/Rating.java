@@ -12,11 +12,13 @@ public class Rating {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_rating;
 
-    private int classement;
+    private int  note;
 
     @OneToOne
     @JoinColumn(name = "id_ouvrier")
     private Ouvrier ouvrier;
+
+
 
 
 

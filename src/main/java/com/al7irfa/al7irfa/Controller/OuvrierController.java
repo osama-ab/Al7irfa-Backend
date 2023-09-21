@@ -3,6 +3,7 @@ package com.al7irfa.al7irfa.Controller;
 
 import com.al7irfa.al7irfa.Entities.Ouvrier;
 import com.al7irfa.al7irfa.Repository.OuvrierRepository;
+import com.al7irfa.al7irfa.Service.OuvrierServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,10 +14,14 @@ public class OuvrierController {
 
     private final OuvrierRepository ouvrierRepository ;
 
+    private final OuvrierServiceImplementation ouvrierServiceImplementation ;
+
 
     @Autowired
-    public OuvrierController(OuvrierRepository ouvrierRepository) {
+    public OuvrierController(OuvrierRepository ouvrierRepository,
+                             OuvrierServiceImplementation ouvrierServiceImplementation) {
         this.ouvrierRepository = ouvrierRepository;
+        this.ouvrierServiceImplementation =ouvrierServiceImplementation;
     }
 
 
@@ -26,4 +31,10 @@ public class OuvrierController {
         return ouvrierRepository.findOuvrierByEmail(email);
 
     }
+
+    @GetMapping("/getOuvrierbyid")
+    public Ouvrier getOuvrierByConsultation(@RequestParam int id){
+        return ouvrierServiceImplementation.findOuvrierByConsultation(id);
+    }
+
 }
