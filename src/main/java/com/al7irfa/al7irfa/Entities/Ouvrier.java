@@ -36,6 +36,7 @@ public class Ouvrier extends User{
     private Metier metier;
 
     @OneToOne(mappedBy = "ouvrier")
+    @JsonManagedReference
     private Rating rating;
 
     @OneToMany(mappedBy = "ouvrier")

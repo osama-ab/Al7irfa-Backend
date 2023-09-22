@@ -1,6 +1,7 @@
 package com.al7irfa.al7irfa.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class Review {
     private String commentaire;
 
     @OneToOne(mappedBy = "review")
+    @JsonManagedReference
     private Consultation consultation;
 
 

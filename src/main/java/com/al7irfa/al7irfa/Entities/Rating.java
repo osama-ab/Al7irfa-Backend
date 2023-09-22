@@ -1,5 +1,6 @@
 package com.al7irfa.al7irfa.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,7 @@ public class Rating {
 
     @OneToOne
     @JoinColumn(name = "id_ouvrier")
+    @JsonBackReference
     private Ouvrier ouvrier;
 
 

@@ -38,6 +38,7 @@ public class Consultation {
     private Ouvrier ouvrier;
 
     @OneToOne
+    @JsonBackReference
     @JoinColumn(name = "idReview")
     private Review review;
 
