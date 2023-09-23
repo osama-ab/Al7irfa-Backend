@@ -24,10 +24,10 @@ public class Ouvrier extends User{
 
     public Ouvrier(int id , String fn ,String ln ,String email, String password ,
                   String addresse , String phone , String cin
-            , String pays  , String ville ,Role role ,Categorie categorie) {
+            , String pays  , String ville ,String image,Role role ,Categorie categorie ) {
         super(  id ,  fn , ln , email,  password ,
                 addresse ,  phone ,  cin
-                ,  pays  ,  ville , role);
+                ,  pays  ,  ville ,image, role);
         this.categorie = categorie ;
     }
 
@@ -51,7 +51,6 @@ public class Ouvrier extends User{
     private Paiement paiement;
 
 //    private int classement ;
-
 
     public Ouvrier() {
 

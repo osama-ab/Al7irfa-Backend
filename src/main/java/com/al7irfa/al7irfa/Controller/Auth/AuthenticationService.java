@@ -54,8 +54,8 @@ public class AuthenticationService {
                 .cin(request.getCin())
                 .pays(request.getPays())
                 .ville(request.getVille())
+                .image(request.getImage())
                 .role(Role.Client)
-//                .image(imageBytes)
                 .build();
         var savedUser = repository.save(client);
         var jwtToken = jwtService.generateToken(client);
@@ -80,7 +80,7 @@ public class AuthenticationService {
 
     public AuthenticationResponse registerOuvrier(RegisterRequest request) {
 
-//        byte[] imageBytes = Base64.getDecoder().decode(request.getImage()); // Decode base64 string to byte array
+//       byte[] imageBytes = Base64.getDecoder().decode(request.getImage()); // Decode base64 string to byte array
 
 
         Ouvrier ouvrier = Ouvrier.builder()
@@ -95,9 +95,10 @@ public class AuthenticationService {
                 .pays(request.getPays())
                 .ville(request.getVille())
                 .role(Role.Ouvrier)
-//                .image(imageBytes)
+                .image(request.getImage())
                 .categorie(request.getCategorie())
                 .build();
+
         var savedUser = repository.save(ouvrier);
         var jwtToken = jwtService.generateToken(ouvrier);
         var refreshToken = jwtService.generateRefreshToken(ouvrier);
@@ -143,6 +144,7 @@ public class AuthenticationService {
                 .phone(user.getPhone())
                 .ville(user.getVille())
                 .pays(user.getPays())
+                .image(user.getImage())
                 .build();
     }
 

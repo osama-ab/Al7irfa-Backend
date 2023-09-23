@@ -52,6 +52,13 @@ public class AuthenticationResponse {
     private String addresse ;
 
 
+    @JsonProperty("image")
+    private String image ;
+
+
+
+
+
 
 
 }

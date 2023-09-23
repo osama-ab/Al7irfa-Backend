@@ -24,7 +24,8 @@ public class RegisterRequest {
     private String cin ;
     private String ville ;
     private String pays ;
-//    private byte[] image ;
+
+    private String image ;
     private Role role ;
 
     private Categorie categorie ;

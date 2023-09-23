@@ -1,6 +1,7 @@
 package com.al7irfa.al7irfa.Controller;
 
 
+import com.al7irfa.al7irfa.Service.ConsultationServiceImplementation;
 import com.al7irfa.al7irfa.Service.ReviewServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +15,15 @@ public class ReviewController {
 
     private final ReviewServiceImplementation reviewServiceImplementation ;
 
+    private final ConsultationServiceImplementation consultationServiceImplementation ;
+
 
     @Autowired
 
-    public ReviewController(ReviewServiceImplementation reviewServiceImplementation) {
+    public ReviewController(ReviewServiceImplementation reviewServiceImplementation ,
+                            ConsultationServiceImplementation consultationServiceImplementation) {
         this.reviewServiceImplementation = reviewServiceImplementation;
+        this.consultationServiceImplementation = consultationServiceImplementation ;
     }
 
 
@@ -28,4 +33,13 @@ public class ReviewController {
         reviewServiceImplementation.createReview(id,commentaire);
         return ResponseEntity.ok("OK ");
     }
+
+
+//    @GetMapping("/getall")
+//
+//    public ResponseEntity<String> getAllReview(@RequestParam int id){
+//
+//
+//
+//    }
 }

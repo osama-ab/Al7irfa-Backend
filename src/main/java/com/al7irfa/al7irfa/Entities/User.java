@@ -37,9 +37,9 @@ public class User implements UserDetails {
 
     private String ville ;
 
-//    @Lob
-//    @Column(name = "image", columnDefinition = "BLOB")
-//    private byte[] image;
+    @Lob
+    @Column(name = "image", columnDefinition = "BLOB")
+    private String image;
 
 
 

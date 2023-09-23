@@ -77,6 +77,14 @@ public class UsersController {
          return clientRepository.findClientById(id);
     }
 
+    @GetMapping("/mellouk")
+
+    public String getIMage(@RequestParam int id ){
+
+    return userRepository.findUserById(id).getImage();
+
+    }
+
 
     
 

@@ -95,21 +95,31 @@ public class ConsultationServiceImplementation {
 
 
     public void setConsultaitonConfirmation(int id ){
+
        Consultation consultation = consultationRepository.findConsultationByIdConsultation(id)  ;
+
        consultation.setIsConfirmed(true);
-        consultationRepository.save(consultation);
 
+       consultationRepository.save(consultation);
 
-    }
+        }
 
 
     public List<Consultation> findConsultationsByOuvrierIdAndIsConfirmed(int id, boolean b) {
+
        return consultationRepository.findConsultationsByOuvrierIdAndIsConfirmed(id,false);
-    }
+
+                    }
 
     public List<Consultation> findConsultationsByClientIdAndIsConfirmed(int id , boolean c){
 
         return consultationRepository.findConsultationsByClientIdAndIsConfirmed(id,true);
 
     }
+
+
+
+
+
+
 }
