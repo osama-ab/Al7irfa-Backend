@@ -37,4 +37,10 @@ public class RatingController {
 
         return ResponseEntity.ok("Rating OK") ;
     }
+
+
+    @GetMapping("/FindRatingByOuvrier")
+    public Rating FindRatingByOuvrier(@RequestParam int id){
+        return ratingServiceImplementation.FindRateByOuvrier(id);
+    }
 }

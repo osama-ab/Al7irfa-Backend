@@ -69,18 +69,26 @@ public class ReviewServiceImplementation {
 
     }
 
-//    public List<Review> findReviewByIdConsultation(int id){
+    public List<Review> findAll(int id_ouvrier ){
+        List<Consultation>consultations=consultationRepository.findConsultationByOuvrierId(id_ouvrier);
+        List<Review>reviews=new ArrayList<>();
+//      for (Consultation consultation : consultations){
 //
-//        List <Consultation> consultations =consultationRepository.findConsultationsByOuvrierIdAndIsConfirmed(id,true) ;
+//              reviews.add(consultation.getReview());
 //
-//        List <Review> reviews = new ArrayList<>();
-//
-//
-//
-//
-//
-//
-//    }
+//      }
+
+
+        for (Consultation consultation : consultations) {
+            Review review = consultation.getReview();
+            if (review != null) {
+                reviews.add(review);
+            }
+        }
+
+
+        return reviews;
+    }
 
 
 }

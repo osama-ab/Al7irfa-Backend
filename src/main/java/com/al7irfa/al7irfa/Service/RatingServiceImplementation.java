@@ -87,4 +87,9 @@ public class RatingServiceImplementation {
 
     }
 
+    public Rating FindRateByOuvrier(int id){
+        Ouvrier ouvrier=ouvrierRepository.findOuvrierById(id);
+        return ouvrier.getRating();
+    }
+
 }
